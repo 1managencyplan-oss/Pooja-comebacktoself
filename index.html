@@ -54,6 +54,11 @@
     html{scroll-behavior:smooth;}
     body{font-family:'Inter',sans-serif;background:#fff;background-image:var(--fp);background-size:120px 120px;color:var(--text);overflow-x:hidden;padding-bottom:90px;}
 
+    /* ── LOGO HEADER ── */
+    .site-header{display:flex;align-items:center;gap:12px;padding:12px 24px;background:#fff;border-bottom:1px solid var(--border);}
+    .site-logo{height:48px;width:48px;object-fit:contain;border-radius:50%;}
+    .site-brand{font-size:17px;font-weight:900;color:var(--pink);letter-spacing:.3px;font-family:'Inter',sans-serif;}
+
     /* ── TOP PILL ── */
     .top-pill-wrap{text-align:center;}
     .top-pill{
@@ -237,6 +242,30 @@
 
     /* ── FAQ ── */
     .faq-list{max-width:760px;margin:40px auto 0;}
+    /* ── BONUS SECTION ── */
+    .bonus-section{background:linear-gradient(135deg,#3D1F2B 0%,#6B1D3A 100%);padding:56px 24px;text-align:center;}
+    .bonus-pill{display:inline-block;background:var(--gold);color:#3D1F2B;font-size:13px;font-weight:900;padding:6px 20px;border-radius:30px;letter-spacing:.5px;margin-bottom:18px;}
+    .bonus-title{font-size:clamp(26px,3.5vw,42px);font-weight:900;color:#fff;line-height:1.25;margin-bottom:12px;}
+    .bonus-hl{color:var(--gold);}
+    .bonus-sub{font-size:15px;color:rgba(255,255,255,.8);max-width:560px;margin:0 auto 36px;}
+    .bonus-card{display:flex;align-items:center;gap:48px;max-width:860px;margin:0 auto;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:36px 40px;}
+    .bonus-book-wrap{flex-shrink:0;width:240px;position:relative;}
+    .bonus-book-img{width:100%;border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,.5);display:block;}
+    .bonus-book-placeholder{display:none;width:100%;aspect-ratio:3/4;background:linear-gradient(140deg,#f5e6c8,#e8c98a);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,.5);align-items:center;justify-content:center;flex-direction:column;padding:24px 16px;border-left:8px solid #c9a84c;}
+    .bonus-book-inner{text-align:center;}
+    .bonus-book-title-text{font-size:22px;font-weight:900;color:#3D1F2B;letter-spacing:1px;margin-bottom:6px;}
+    .bonus-book-sub-text{font-size:11px;color:#5a3a1a;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px;border-top:1px solid #c9a84c;border-bottom:1px solid #c9a84c;padding:6px 0;}
+    .bonus-book-bullets{font-size:11px;color:#3D1F2B;line-height:2;margin-bottom:16px;text-align:left;}
+    .bonus-book-author{font-size:13px;font-weight:800;color:#5a3a1a;border-top:1px solid #c9a84c;padding-top:10px;margin-top:4px;}
+    .bonus-details{text-align:left;flex:1;}
+    .bonus-book-name{font-size:26px;font-weight:900;color:var(--gold);margin-bottom:12px;}
+    .bonus-book-desc{font-size:14px;color:rgba(255,255,255,.8);line-height:1.8;margin-bottom:24px;}
+    .bonus-value-box{background:rgba(255,209,102,.12);border:2px dashed var(--gold);border-radius:14px;padding:18px 22px;}
+    .bonus-worth{font-size:20px;font-weight:900;color:#fff;margin-bottom:8px;}
+    .bonus-strike{text-decoration:line-through;color:rgba(255,255,255,.45);font-weight:600;font-size:16px;}
+    .bonus-free{color:var(--gold);font-size:22px;}
+    .bonus-when{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:.5px;text-transform:uppercase;}
+
     .faq-item{background:#fff;border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;}
     .faq-item summary{padding:18px 22px;font-weight:800;color:var(--pink);cursor:pointer;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;}
     .faq-item summary::-webkit-details-marker{display:none;}
@@ -324,10 +353,19 @@
       .sticky{padding:10px 14px;}
       .cd-box{width:54px;height:54px;font-size:24px;}
       .cd-colon{font-size:24px;padding-top:8px;}
+      .bonus-card{flex-direction:column;align-items:center;gap:28px;}
+      .bonus-book-wrap{width:220px;}
+      .bonus-details{text-align:center;}
     }
   </style>
 </head>
 <body>
+
+<!-- LOGO HEADER -->
+<header class="site-header">
+  <img src="assets/logo.png" alt="Comeback To Self — Pooja Manocha" class="site-logo"/>
+  <span class="site-brand">Comeback To Self</span>
+</header>
 
 <!-- TOP PILL -->
 <div class="top-pill-wrap">
@@ -680,6 +718,38 @@
         <div class="ws-img-wrap"><img class="ws-img" src="assets/testimonials/t2-avanti.jpeg" alt="Testimonial from Mrs. Avanti Deshpande" loading="lazy"/><div class="ws-name-blur"></div></div>
         <div class="ws-img-wrap"><img class="ws-img" src="assets/testimonials/t3-arpita.jpeg" alt="Testimonial from Ar Arpita Gilada" loading="lazy"/><div class="ws-name-blur"></div></div>
         <div class="ws-img-wrap"><img class="ws-img" src="assets/testimonials/t5-harshita.jpeg" alt="Testimonial from Dr. Harshita V." loading="lazy"/><div class="ws-name-blur"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BONUS SECTION -->
+<section class="bonus-section">
+  <div class="bonus-pill">🎁 EXCLUSIVE BONUS</div>
+  <h2 class="bonus-title">Register Today &amp; Get A <span class="bonus-hl">Free Bonus</span></h2>
+  <p class="bonus-sub">This powerful tool is designed to accelerate your journey to inner stability and self-trust.</p>
+  <div class="bonus-card">
+    <div class="bonus-book-wrap">
+      <img class="bonus-book-img" src="assets/bonus-book.jpg" alt="Unburdened Workbook by Pooja Manocha" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="bonus-book-placeholder">
+        <div class="bonus-book-inner">
+          <div class="bonus-book-title-text">UNBURDENED</div>
+          <div class="bonus-book-sub-text">The Inner Stability &amp; Self-Trust Workbook</div>
+          <div class="bonus-book-bullets">
+            <div>• Break Free From Expectations</div>
+            <div>• Set Healthy Boundaries</div>
+            <div>• Come Back To Your Authentic Self</div>
+          </div>
+          <div class="bonus-book-author">Pooja Manocha</div>
+        </div>
+      </div>
+    </div>
+    <div class="bonus-details">
+      <h3 class="bonus-book-name">Unburdened Workbook</h3>
+      <p class="bonus-book-desc">Break free from expectations, set healthy boundaries, and come back to your authentic self. A practical workbook to help you release pressure, rebuild self-trust, and design a life aligned with who you truly are.</p>
+      <div class="bonus-value-box">
+        <div class="bonus-worth">Worth <span class="bonus-strike">₹9,999</span> <span class="bonus-free">YOURS FREE!</span></div>
+        <div class="bonus-when">🎁 RECEIVE THIS AT THE END OF THE WEBINAR</div>
       </div>
     </div>
   </div>
