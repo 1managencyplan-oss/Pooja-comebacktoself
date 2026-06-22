@@ -217,6 +217,15 @@
     .tg-wrap{margin-top:44px;background:#fff;border-radius:20px;padding:32px 28px 20px;border:1px solid var(--border);box-shadow:0 8px 24px rgba(224,69,123,.07);}
     .tg-ttl{text-align:center;font-size:15px;font-weight:900;color:var(--text);margin-bottom:20px;}
     .tg-svg{width:100%;display:block;}
+    .tg-curve{transition:stroke-dashoffset 1.8s ease;}
+    .tg-fill{opacity:0;transition:opacity 1s ease;}
+    .tg-svg.tg-play .tg-fill{opacity:1;}
+    .tg-dot{opacity:0;transform:scale(0);transform-origin:center;transition:opacity .4s ease,transform .4s cubic-bezier(.34,1.56,.64,1);}
+    .tg-svg.tg-play .tg-dot{opacity:1;transform:scale(1);}
+    .tg-vline{opacity:0;transition:opacity .4s ease;}
+    .tg-svg.tg-play .tg-vline{opacity:1;}
+    .tg-label{opacity:0;transform:translateY(6px);transition:opacity .5s ease,transform .5s ease;}
+    .tg-svg.tg-play .tg-label{opacity:1;transform:translateY(0);}
     /* stats strip */
     .stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--pink);border-radius:20px;margin-top:48px;overflow:hidden;}
     .stat-item{padding:28px 16px;text-align:center;border-right:1px solid rgba(255,255,255,.2);}
@@ -614,26 +623,28 @@
         <!-- Y axis title -->
         <text x="16" y="160" text-anchor="middle" font-size="11" fill="#C2659E" font-family="Inter,sans-serif" font-weight="700" transform="rotate(-90 16 160)">Clarity &amp; Inner Peace</text>
         <!-- Curve: starts low, tiny dip at awareness (pattern shock), then rises sharply -->
-        <path d="M110,232 C160,230 200,228 240,222 C260,219 270,224 285,218 C310,208 330,190 360,170 C400,142 450,106 520,72 C590,40 680,34 760,30"
+        <path class="tg-curve" d="M110,232 C160,230 200,228 240,222 C260,219 270,224 285,218 C310,208 330,190 360,170 C400,142 450,106 520,72 C590,40 680,34 760,30"
               stroke="#C2659E" stroke-width="3.5" fill="none" stroke-linecap="round"/>
         <!-- Fill -->
-        <path d="M110,232 C160,230 200,228 240,222 C260,219 270,224 285,218 C310,208 330,190 360,170 C400,142 450,106 520,72 C590,40 680,34 760,30 L760,245 L110,245 Z"
-              fill="url(#curveGrad)"/>
+        <path class="tg-fill" d="M110,232 C160,230 200,228 240,222 C260,219 270,224 285,218 C310,208 330,190 360,170 C400,142 450,106 520,72 C590,40 680,34 760,30 L760,245 L110,245 Z"
+              fill="url(#curveGrad)" style="transition-delay:1.5s;"/>
         <!-- Milestone dots -->
-        <circle cx="110" cy="232" r="7" fill="#C2659E"/>
-        <circle cx="285" cy="218" r="7" fill="#C2659E"/>
-        <circle cx="440" cy="115" r="7" fill="#C2659E"/>
-        <circle cx="650" cy="34" r="10" fill="#C2659E"/>
-        <circle cx="650" cy="34" r="5" fill="white"/>
+        <circle class="tg-dot" cx="110" cy="232" r="7" fill="#C2659E" style="transition-delay:.1s;"/>
+        <circle class="tg-dot" cx="285" cy="218" r="7" fill="#C2659E" style="transition-delay:.6s;"/>
+        <circle class="tg-dot" cx="440" cy="115" r="7" fill="#C2659E" style="transition-delay:1.1s;"/>
+        <g class="tg-dot" style="transition-delay:1.6s;">
+          <circle cx="650" cy="34" r="10" fill="#C2659E"/>
+          <circle cx="650" cy="34" r="5" fill="white"/>
+        </g>
         <!-- Vertical line at Workshop -->
-        <line x1="285" y1="180" x2="285" y2="245" stroke="#C2659E" stroke-width="1.5" stroke-dasharray="5 5"/>
+        <line class="tg-vline" x1="285" y1="180" x2="285" y2="245" stroke="#C2659E" stroke-width="1.5" stroke-dasharray="5 5" style="transition-delay:.6s;"/>
         <!-- Labels -->
-        <text x="110" y="262" text-anchor="middle" font-size="12" fill="#888" font-family="Inter,sans-serif">Before</text>
-        <text x="285" y="262" text-anchor="middle" font-size="12" fill="#C2659E" font-family="Inter,sans-serif" font-weight="800">Workshop</text>
-        <text x="440" y="100" text-anchor="middle" font-size="11" fill="#C2659E" font-family="Inter,sans-serif" font-weight="700">Tools Applied</text>
-        <text x="650" y="20" text-anchor="middle" font-size="13" fill="#C2659E" font-family="Inter,sans-serif" font-weight="800">✨ Freedom</text>
+        <text class="tg-label" x="110" y="262" text-anchor="middle" font-size="12" fill="#888" font-family="Inter,sans-serif" style="transition-delay:.1s;">Before</text>
+        <text class="tg-label" x="285" y="262" text-anchor="middle" font-size="12" fill="#C2659E" font-family="Inter,sans-serif" font-weight="800" style="transition-delay:.6s;">Workshop</text>
+        <text class="tg-label" x="440" y="100" text-anchor="middle" font-size="11" fill="#C2659E" font-family="Inter,sans-serif" font-weight="700" style="transition-delay:1.1s;">Tools Applied</text>
+        <text class="tg-label" x="650" y="20" text-anchor="middle" font-size="13" fill="#C2659E" font-family="Inter,sans-serif" font-weight="800" style="transition-delay:1.6s;">✨ Freedom</text>
         <!-- Small annotation at dip -->
-        <text x="285" y="205" text-anchor="middle" font-size="10" fill="#C2659E" font-family="Inter,sans-serif">"Aha!" Moment</text>
+        <text class="tg-label" x="285" y="205" text-anchor="middle" font-size="10" fill="#C2659E" font-family="Inter,sans-serif" style="transition-delay:.7s;">"Aha!" Moment</text>
       </svg>
     </div>
 
@@ -1029,6 +1040,23 @@
       }
     }, {threshold: 0.5});
     obs.observe(pb);
+  }
+
+  // Transformation journey graph: draw-on-scroll animation
+  const tgSvg = document.querySelector('.tg-svg');
+  if(tgSvg){
+    const tgCurve = tgSvg.querySelector('.tg-curve');
+    const len = tgCurve.getTotalLength();
+    tgCurve.style.strokeDasharray = len;
+    tgCurve.style.strokeDashoffset = len;
+    const tgObs = new IntersectionObserver(entries => {
+      if(entries[0].isIntersecting){
+        tgCurve.style.strokeDashoffset = 0;
+        tgSvg.classList.add('tg-play');
+        tgObs.disconnect();
+      }
+    }, {threshold: 0.4});
+    tgObs.observe(tgSvg);
   }
 </script>
 
