@@ -1007,7 +1007,6 @@
 
     const planValue = selectedPlan === 'vip' ? 199 : 99;
     if (typeof fbq !== 'undefined') {
-      fbq('track', 'Purchase', {value: planValue, currency: 'INR', content_name: 'CB2S Workshop', content_type: 'product'});
       fbq('track', 'Lead', {value: planValue, currency: 'INR'});
       fbq('track', 'CompleteRegistration', {value: planValue, currency: 'INR'});
     }
@@ -1019,7 +1018,7 @@
     } catch(err) {}
 
     if (APPS_SCRIPT_URL.indexOf('PASTE_') === -1) {
-      const params = new URLSearchParams({ name: leadData.name, phone: leadData.phone, email: leadData.email });
+      const params = new URLSearchParams({ name: leadData.name, phone: leadData.phone, email: leadData.email, plan: selectedPlan, status: 'REGISTERED' });
       fetch(APPS_SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors', keepalive: true });
     }
 

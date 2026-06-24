@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payment Successful — Comeback to Self</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2654825921550366');
+  fbq('track', 'PageView');
+</script>
+<style>
+  body{margin:0;font-family:'Poppins',Arial,sans-serif;background:#FBF2EE;color:#3B2147;text-align:center;padding:60px 20px;}
+  .box{max-width:480px;margin:0 auto;background:#fff;border-radius:20px;padding:40px 28px;box-shadow:0 8px 30px rgba(168,143,201,0.25);}
+  .emoji{font-size:54px;margin-bottom:10px;}
+  h1{font-size:24px;margin:0 0 12px;color:#3B2147;}
+  p{font-size:15px;color:#6b5a78;line-height:1.6;}
+  .wa-btn{display:block;margin-top:24px;background:#25D366;color:#fff;text-decoration:none;font-weight:700;padding:16px;border-radius:12px;font-size:16px;}
+  .detail{margin-top:18px;font-size:14px;color:#9C2D5C;font-weight:700;}
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="emoji">🎉</div>
+    <h1>Payment Successful!</h1>
+    <p>You're confirmed for the <strong>Comeback to Self</strong> workshop on <strong>5th July, 12:00 PM IST</strong>.</p>
+    <div class="detail" id="plan-detail"></div>
+    <p>Join the WhatsApp group below to get your Zoom link, reminders, and your free Life Compass Calculator.</p>
+    <a class="wa-btn" href="https://chat.whatsapp.com/KR6bsSuMzYY1xePBEp2gSB?s=cl&p=i&mlu=3&amv=0" target="_blank" rel="noopener">💬 Join Our WhatsApp Group →</a>
+  </div>
+
+<script>
+  function getParam(name){
+    const url = new URL(window.location.href);
+    return url.searchParams.get(name) || '';
+  }
+  const plan = getParam('plan') || 'standard';
+  const value = getParam('value') || (plan === 'vip' ? '199' : '99');
+
+  document.getElementById('plan-detail').textContent = plan === 'vip'
+    ? '✅ VIP Pass — Workshop + Recording'
+    : '✅ Workshop Pass';
+
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'Purchase', {value: Number(value), currency: 'INR', content_name: 'CB2S Workshop', content_type: 'product'});
+  }
+
+  let lead = {};
+  try {
+    const leads = JSON.parse(localStorage.getItem('comebacktoself_leads') || '[]');
+    if (leads.length) lead = leads[leads.length - 1];
+  } catch(err) {}
+
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxobptXUUKHkKi_EKvGpAfU7boFxoMl7sk7jufXdD6xUKfxJl0BVqmQkN0riSGg1OWp/exec';
+  const params = new URLSearchParams({
+    name: lead.name || '',
+    phone: lead.phone || '',
+    email: lead.email || '',
+    plan: plan,
+    value: value,
+    status: 'PAID'
+  });
+  fetch(APPS_SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors', keepalive: true });
+</script>
+</body>
+</html>
