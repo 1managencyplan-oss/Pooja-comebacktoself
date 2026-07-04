@@ -1038,8 +1038,8 @@
           </div>
         </div>
         <div style="margin-bottom:24px;">
-          <label class="field-label">Email (optional)</label>
-          <input id="lead-email" class="field-input" type="email" placeholder="Enter your email"/>
+          <label class="field-label">Email Address *</label>
+          <input id="lead-email" class="field-input" type="email" placeholder="Enter your email" required/>
         </div>
 
         <button type="submit" id="lead-submit-btn" class="submit-btn" style="display:flex;flex-direction:column;align-items:center;gap:2px;"><span><s style="opacity:0.6;font-size:0.85em;">₹599</s> &nbsp;I'm Done Waiting →</span><small style="font-size:11px;font-weight:600;opacity:0.85;">Claim your free spot</small></button>
@@ -1118,6 +1118,10 @@
 
     if (!name || phone.length !== 10) {
       alert('Please enter your name and a valid 10-digit WhatsApp number.');
+      return;
+    }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('Please enter a valid email address.');
       return;
     }
 
