@@ -1184,6 +1184,8 @@
 <script>
   // AGENCY: paste your Google Apps Script Web App URL here to log leads to a Sheet (leave as-is to skip)
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyXh8G7-aksTBJ68Oi3emiHnGwZcD_0OHoLAZv5mf-fWmliZB1pGI8z9KhRG4zWF3l4Q/exec';
+  // AGENCY: Pabbly Connect webhook — receives the full lead payload (incl. step-2 answers + UTM params)
+  const PABBLY_WEBHOOK_URL = 'https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjcwNTY5MDYzMDA0MzU1MjY5NTUzNTUxMzAi_pc';
 
   document.querySelectorAll('.enroll-btn, .sticky-btn').forEach(btn => {
     btn.addEventListener('click', openModal);
@@ -1284,6 +1286,34 @@
         status: 'Form Fill'
       });
       fetch(APPS_SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors', keepalive: true });
+    }
+
+    // Send full payload (contact + step-2 answers + all URL params) to Pabbly webhook
+    if (PABBLY_WEBHOOK_URL.indexOf('PASTE_') === -1) {
+      const urlParams = {};
+      new URLSearchParams(window.location.search).forEach((v, k) => { urlParams[k] = v; });
+      const pabblyPayload = Object.assign({
+        name: leadData.name,
+        phone: leadData.phone,
+        email: leadData.email,
+        plan: 'Free Masterclass',
+        gender: leadData.gender,
+        challenge: leadData.challenge,
+        urgency: leadData.urgency,
+        support: leadData.support,
+        date: '19 July 2026',
+        time: '12:00 PM IST',
+        status: 'Form Fill',
+        timestamp: leadData.time,
+        page_url: window.location.href
+      }, urlParams);
+      fetch(PABBLY_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(pabblyPayload),
+        mode: 'no-cors',
+        keepalive: true
+      });
     }
 
     document.getElementById('modal-form-view').style.display = 'none';
