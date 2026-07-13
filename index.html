@@ -505,6 +505,47 @@
       transition:.2s;
     }
     .submit-btn:hover{filter:brightness(1.1);transform:translateY(-2px);}
+    .submit-btn:disabled{opacity:.6;cursor:default;transform:none;}
+
+    /* ── STEP INDICATOR ── */
+    .step-dots{display:flex;justify-content:center;gap:8px;margin-bottom:18px;}
+    .step-dot{width:26px;height:5px;border-radius:3px;background:rgba(192,132,252,0.22);transition:.3s;}
+    .step-dot.active{background:linear-gradient(90deg,var(--gold),#f472b6);width:34px;}
+
+    /* ── QUESTION BLOCKS (STEP 2) ── */
+    .q-block{margin-bottom:20px;}
+    .q-title{font-size:14px;font-weight:800;color:var(--text);display:block;margin-bottom:10px;line-height:1.45;}
+    .q-hint{font-size:12px;font-weight:500;color:var(--muted);display:block;margin-top:2px;margin-bottom:2px;font-style:italic;}
+    .opt-grid{display:grid;gap:8px;}
+    .opt-grid.cols-3{grid-template-columns:repeat(3,1fr);}
+    .opt-grid.cols-2{grid-template-columns:repeat(2,1fr);}
+    .opt-card{
+      display:flex;align-items:center;gap:9px;
+      padding:12px 12px;border-radius:12px;cursor:pointer;
+      background:rgba(255,255,255,0.05);
+      border:1.5px solid var(--card-border);
+      font-size:13.5px;font-weight:600;color:var(--text);line-height:1.35;
+      transition:.15s;user-select:none;text-align:left;
+    }
+    .opt-card:hover{border-color:var(--pink);background:rgba(192,132,252,0.08);}
+    .opt-card .opt-emoji{font-size:16px;flex-shrink:0;}
+    .opt-card.selected{
+      border-color:var(--gold);
+      background:linear-gradient(135deg,rgba(251,191,36,0.16),rgba(244,114,182,0.12));
+      box-shadow:0 0 0 1px var(--gold) inset;
+    }
+    .opt-grid.cols-3 .opt-card{justify-content:center;text-align:center;padding:14px 8px;}
+    textarea.field-input{resize:vertical;min-height:92px;line-height:1.5;}
+    .btn-row{display:flex;gap:10px;align-items:stretch;}
+    .back-btn{
+      flex-shrink:0;background:rgba(255,255,255,0.06);color:var(--muted);
+      border:1px solid var(--card-border);border-radius:50px;
+      padding:0 22px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;transition:.2s;
+    }
+    .back-btn:hover{color:var(--text);border-color:var(--pink);}
+    @media(max-width:768px){
+      .opt-grid.cols-2{grid-template-columns:1fr;}
+    }
     .success-box{text-align:center;}
     .success-box .big-emoji{font-size:52px;margin-bottom:12px;}
     .success-box h2{color:var(--gold);font-size:22px;margin-bottom:10px;font-family:'Playfair Display',serif;}
@@ -1020,30 +1061,81 @@
     <button class="modal-close" onclick="closeModal()">×</button>
 
     <div id="modal-form-view">
-      <div style="text-align:center;margin-bottom:24px;">
+      <div style="text-align:center;margin-bottom:18px;">
         <div class="modal-badge">🔥 Only 27 Spots Left</div>
         <h2>Grab Your Free Spot</h2>
-        <p class="sub">Enter your details — we'll send the Zoom link directly to your WhatsApp</p>
+        <p class="sub" id="modal-sub">Enter your details — we'll send the Zoom link directly to your WhatsApp</p>
       </div>
+
+      <div class="step-dots">
+        <div class="step-dot active" id="dot-1"></div>
+        <div class="step-dot" id="dot-2"></div>
+      </div>
+
       <form id="lead-form" onsubmit="submitLead(event)">
-        <div style="margin-bottom:16px;">
-          <label class="field-label">Full Name *</label>
-          <input id="lead-name" class="field-input" type="text" placeholder="Enter your full name" required/>
-        </div>
-        <div style="margin-bottom:16px;">
-          <label class="field-label">WhatsApp Number *</label>
-          <div class="phone-row">
-            <div class="phone-prefix">+91</div>
-            <input id="lead-phone" class="field-input" type="tel" placeholder="10-digit mobile number" required maxlength="10" pattern="[0-9]{10}"/>
+        <!-- STEP 1 — CONTACT DETAILS -->
+        <div id="form-step-1">
+          <div style="margin-bottom:16px;">
+            <label class="field-label">Full Name *</label>
+            <input id="lead-name" class="field-input" type="text" placeholder="Enter your full name"/>
           </div>
-        </div>
-        <div style="margin-bottom:24px;">
-          <label class="field-label">Email Address *</label>
-          <input id="lead-email" class="field-input" type="email" placeholder="Enter your email" required/>
+          <div style="margin-bottom:16px;">
+            <label class="field-label">WhatsApp Number *</label>
+            <div class="phone-row">
+              <div class="phone-prefix">+91</div>
+              <input id="lead-phone" class="field-input" type="tel" placeholder="10-digit mobile number" maxlength="10" pattern="[0-9]{10}"/>
+            </div>
+          </div>
+          <div style="margin-bottom:24px;">
+            <label class="field-label">Email Address *</label>
+            <input id="lead-email" class="field-input" type="email" placeholder="Enter your email"/>
+          </div>
+          <button type="button" id="step1-next-btn" class="submit-btn" onclick="goToStep2()">Continue →</button>
+          <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:12px;">🔒 We respect your privacy. No spam, ever.</p>
         </div>
 
-        <button type="submit" id="lead-submit-btn" class="submit-btn" style="display:flex;flex-direction:column;align-items:center;gap:2px;"><span><s style="opacity:0.6;font-size:0.85em;">₹599</s> &nbsp;I'm Done Waiting →</span><small style="font-size:11px;font-weight:600;opacity:0.85;">Claim your free spot</small></button>
-        <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:12px;">🔒 We respect your privacy. No spam, ever.</p>
+        <!-- STEP 2 — QUALIFYING QUESTIONS -->
+        <div id="form-step-2" style="display:none;">
+          <div class="q-block">
+            <label class="q-title">Gender Identity *</label>
+            <div class="opt-grid cols-3" data-q="gender">
+              <div class="opt-card" data-val="Male">Male</div>
+              <div class="opt-card" data-val="Female">Female</div>
+              <div class="opt-card" data-val="Other">Other</div>
+            </div>
+          </div>
+
+          <div class="q-block">
+            <label class="q-title">What is the #1 challenge you are facing right now? *
+              <span class="q-hint">Please explain it in detail — including what you have already tried and why this still feels unresolved.</span>
+            </label>
+            <textarea id="lead-challenge" class="field-input" placeholder="Type your answer here..."></textarea>
+          </div>
+
+          <div class="q-block">
+            <label class="q-title">How urgently do you want to solve this problem? *</label>
+            <div class="opt-grid cols-2" data-q="urgency">
+              <div class="opt-card" data-val="Immediately — I need help now"><span class="opt-emoji">🔴</span> Immediately — I need help now</div>
+              <div class="opt-card" data-val="Within the next 30 days"><span class="opt-emoji">🟠</span> Within the next 30 days</div>
+              <div class="opt-card" data-val="In the next 2–3 months"><span class="opt-emoji">🟡</span> In the next 2–3 months</div>
+              <div class="opt-card" data-val="Just exploring for now"><span class="opt-emoji">⚪</span> Just exploring for now</div>
+            </div>
+          </div>
+
+          <div class="q-block" style="margin-bottom:24px;">
+            <label class="q-title">What type of support are you most interested in? *</label>
+            <div class="opt-grid cols-2" data-q="support">
+              <div class="opt-card" data-val="1:1 personalized coaching">1:1 personalized coaching</div>
+              <div class="opt-card" data-val="Group coaching / community support">Group coaching / community support</div>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="back-btn" onclick="goToStep1()">←</button>
+            <button type="submit" id="lead-submit-btn" class="submit-btn" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;"><span><s style="opacity:0.6;font-size:0.85em;">₹599</s> &nbsp;I'm Done Waiting →</span><small style="font-size:11px;font-weight:600;opacity:0.85;">Claim your free spot</small></button>
+          </div>
+          <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:12px;">🔒 We respect your privacy. No spam, ever.</p>
+        </div>
       </form>
     </div>
 
@@ -1110,8 +1202,21 @@
     if (e.target === this) closeModal();
   });
 
-  function submitLead(e){
-    e.preventDefault();
+  // ── SELECTABLE CARD LOGIC (single-select per question) ──
+  const answers = { gender: '', urgency: '', support: '' };
+  document.querySelectorAll('.opt-grid').forEach(grid => {
+    const q = grid.getAttribute('data-q');
+    grid.querySelectorAll('.opt-card').forEach(card => {
+      card.addEventListener('click', () => {
+        grid.querySelectorAll('.opt-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        answers[q] = card.getAttribute('data-val');
+      });
+    });
+  });
+
+  // ── STEP NAVIGATION ──
+  function goToStep2(){
     const name  = document.getElementById('lead-name').value.trim();
     const phone = document.getElementById('lead-phone').value.trim();
     const email = document.getElementById('lead-email').value.trim();
@@ -1125,11 +1230,41 @@
       return;
     }
 
+    document.getElementById('form-step-1').style.display = 'none';
+    document.getElementById('form-step-2').style.display = 'block';
+    document.getElementById('dot-2').classList.add('active');
+    document.getElementById('modal-sub').textContent = 'Almost there — a few quick questions so Pooja can tailor this for you.';
+    document.querySelector('.modal-box').scrollTop = 0;
+  }
+
+  function goToStep1(){
+    document.getElementById('form-step-2').style.display = 'none';
+    document.getElementById('form-step-1').style.display = 'block';
+    document.getElementById('dot-2').classList.remove('active');
+    document.getElementById('modal-sub').textContent = "Enter your details — we'll send the Zoom link directly to your WhatsApp";
+  }
+
+  function submitLead(e){
+    e.preventDefault();
+    const name  = document.getElementById('lead-name').value.trim();
+    const phone = document.getElementById('lead-phone').value.trim();
+    const email = document.getElementById('lead-email').value.trim();
+    const challenge = document.getElementById('lead-challenge').value.trim();
+
+    if (!answers.gender)  { alert('Please select your gender identity.'); return; }
+    if (!challenge)       { alert('Please describe the #1 challenge you are facing.'); return; }
+    if (!answers.urgency) { alert('Please select how urgently you want to solve this.'); return; }
+    if (!answers.support) { alert('Please select the type of support you are interested in.'); return; }
+
     const btn = document.getElementById('lead-submit-btn');
     btn.disabled = true;
     btn.innerHTML = '⏳ Registering...';
 
-    const leadData = { name, phone: '+91' + phone, email, plan: 'Free Masterclass', time: new Date().toISOString() };
+    const leadData = {
+      name, phone: '+91' + phone, email, plan: 'Free Masterclass',
+      gender: answers.gender, challenge, urgency: answers.urgency, support: answers.support,
+      time: new Date().toISOString()
+    };
 
     if (typeof fbq !== 'undefined') {
       fbq('track', 'Lead', {value: 0, currency: 'INR'});
@@ -1143,7 +1278,11 @@
     } catch(err) {}
 
     if (APPS_SCRIPT_URL.indexOf('PASTE_') === -1) {
-      const params = new URLSearchParams({ name: leadData.name, phone: leadData.phone, email: leadData.email, plan: 'Free Masterclass', status: 'Form Fill' });
+      const params = new URLSearchParams({
+        name: leadData.name, phone: leadData.phone, email: leadData.email, plan: 'Free Masterclass',
+        gender: leadData.gender, challenge: leadData.challenge, urgency: leadData.urgency, support: leadData.support,
+        status: 'Form Fill'
+      });
       fetch(APPS_SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors', keepalive: true });
     }
 
