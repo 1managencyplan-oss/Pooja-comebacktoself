@@ -1186,6 +1186,8 @@
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyXh8G7-aksTBJ68Oi3emiHnGwZcD_0OHoLAZv5mf-fWmliZB1pGI8z9KhRG4zWF3l4Q/exec';
   // AGENCY: Pabbly Connect webhook — receives the full lead payload (incl. step-2 answers + UTM params)
   const PABBLY_WEBHOOK_URL = 'https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjcwNTY5MDYzMDA0MzU1MjY5NTUzNTUxMzAi_pc';
+  // AGENCY: Pabbly webhook fired on STEP 1 "Continue" — captures Date, Time, Name, Email, Phone, Source
+  const STEP1_WEBHOOK_URL = 'https://connect.pabbly.com/webhook-listener/webhook/IjU3NjIwNTZhMDYzMjA0MzA1MjY0NTUzNyI_3D_pc/IjU3NjcwNTY5MDYzMDA0M2M1MjY4NTUzYzUxMzUi_pc';
 
   document.querySelectorAll('.enroll-btn, .sticky-btn').forEach(btn => {
     btn.addEventListener('click', openModal);
@@ -1230,6 +1232,29 @@
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       alert('Please enter a valid email address.');
       return;
+    }
+
+    // Fire STEP 1 webhook (Date, Time, Name, Email, Phone, Source) — does not affect step-2 flow
+    if (STEP1_WEBHOOK_URL.indexOf('PASTE_') === -1) {
+      const now = new Date();
+      const dateIST = now.toLocaleDateString('en-GB', { timeZone: 'Asia/Kolkata', day: '2-digit', month: 'short', year: 'numeric' });
+      const timeIST = now.toLocaleTimeString('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', hour12: true }) + ' IST';
+      const urlParams = new URLSearchParams(window.location.search);
+      const source = urlParams.get('utm_source') || urlParams.get('source') || 'Direct/Website';
+      fetch(STEP1_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          Date: dateIST,
+          Time: timeIST,
+          Name: name,
+          Email: email,
+          Phone: '+91' + phone,
+          Source: source
+        }),
+        mode: 'no-cors',
+        keepalive: true
+      });
     }
 
     document.getElementById('form-step-1').style.display = 'none';
