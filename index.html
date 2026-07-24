@@ -1234,6 +1234,21 @@
       return;
     }
 
+    // Fire Meta Lead event on step 1 — Meta counts this as a lead
+    if (typeof fbq !== 'undefined') {
+      fbq('track', 'Lead', { value: 0, currency: 'INR' });
+    }
+
+    // Log step 1 to Google Sheet as "First Form Filled"
+    if (APPS_SCRIPT_URL.indexOf('PASTE_') === -1) {
+      const params1 = new URLSearchParams({
+        name: name, phone: '+91' + phone, email: email, plan: 'Free Masterclass',
+        gender: '', challenge: '', urgency: '', support: '',
+        status: 'First Form Filled'
+      });
+      fetch(APPS_SCRIPT_URL + '?' + params1.toString(), { method: 'GET', mode: 'no-cors', keepalive: true });
+    }
+
     // Fire STEP 1 webhook (Date, Time, Name, Email, Phone, Source) — does not affect step-2 flow
     if (STEP1_WEBHOOK_URL.indexOf('PASTE_') === -1) {
       const now = new Date();
@@ -1294,7 +1309,6 @@
     };
 
     if (typeof fbq !== 'undefined') {
-      fbq('track', 'Lead', {value: 0, currency: 'INR'});
       fbq('track', 'CompleteRegistration', {value: 0, currency: 'INR'});
     }
 
@@ -1308,7 +1322,7 @@
       const params = new URLSearchParams({
         name: leadData.name, phone: leadData.phone, email: leadData.email, plan: 'Free Masterclass',
         gender: leadData.gender, challenge: leadData.challenge, urgency: leadData.urgency, support: leadData.support,
-        status: 'Form Fill'
+        status: 'Second Form Filled'
       });
       fetch(APPS_SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors', keepalive: true });
     }
@@ -1328,7 +1342,7 @@
         support: leadData.support,
         date: '26 July 2026',
         time: '12:00 PM IST',
-        status: 'Form Fill',
+        status: 'Second Form Filled',
         timestamp: leadData.time,
         page_url: window.location.href
       }, urlParams);
