@@ -308,6 +308,66 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 .pain-check{color:var(--amethyst);font-size:18px;margin-top:2px;flex-shrink:0;}
 .pain-text{font-size:15px;color:var(--charcoal);line-height:1.6;}
 
+/* ── 6 WAYS ── */
+.ways-section{
+  background:var(--white);
+  padding:72px 24px;
+}
+.ways-section .section-title{color:var(--plum);}
+.ways-sub-title{
+  text-align:center;
+  font-size:17px;
+  color:var(--grey);
+  font-style:italic;
+  font-family:'Cormorant Garamond',serif;
+  margin-bottom:56px;
+}
+.way-item{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+  max-width:960px;
+  margin:0 auto 32px;
+  background:var(--ivory);
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid rgba(91,58,112,0.08);
+}
+.way-item:nth-child(even){direction:rtl;}
+.way-item:nth-child(even) > *{direction:ltr;}
+@media(max-width:680px){
+  .way-item,.way-item:nth-child(even){grid-template-columns:1fr;direction:ltr;}
+  .way-img-wrap img{height:220px;}
+}
+.way-content{padding:32px 36px;}
+.way-badge{
+  display:inline-block;
+  background:var(--gold);
+  color:var(--plum);
+  font-size:11px;font-weight:900;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:5px 14px;border-radius:50px;
+  margin-bottom:16px;
+}
+.way-title{
+  font-size:22px;font-weight:800;color:var(--plum);
+  margin-bottom:12px;line-height:1.3;
+}
+.way-desc{font-size:15px;color:var(--grey);line-height:1.75;margin-bottom:16px;}
+.way-insight{
+  background:rgba(197,164,109,0.12);
+  border-left:3px solid var(--gold);
+  border-radius:8px;
+  padding:12px 16px;
+  font-size:14px;font-weight:600;color:var(--amethyst);
+}
+.way-img-wrap img{
+  width:100%;height:300px;
+  object-fit:cover;object-position:center 20%;
+  display:block;
+}
+
 /* ── 6 SHIFTS ── */
 .shifts-section{
   background:var(--lavender);
@@ -750,6 +810,89 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
   <div style="text-align:center;margin-top:40px;">
     <p style="font-size:16px;color:var(--amethyst);font-weight:600;margin-bottom:20px;font-style:italic;font-family:'Cormorant Garamond',serif;">If you nodded at even one of these — this masterclass was made for you.</p>
     <button class="enroll-btn">Yes, Reserve My Spot →</button>
+  </div>
+</section>
+
+<!-- 6 WAYS -->
+<section class="ways-section">
+  <div class="section-eyebrow">Does This Sound Like You?</div>
+  <h2 class="section-title">6 Silent Ways You've Been Losing Yourself</h2>
+  <p class="ways-sub-title">((And why nothing has shifted... yet))</p>
+
+  <div class="way-item">
+    <div class="way-content">
+      <div class="way-badge">Way 1</div>
+      <div class="way-title">Staying Strong Instead of Being Honest</div>
+      <div class="way-desc">You learned to function, not feel.<br/>What's suppressed doesn't disappear — it accumulates.</div>
+      <div class="way-insight">✨ You can't reconnect if you keep numbing.</div>
+    </div>
+    <div class="way-img-wrap">
+      <img src="assets/indian-stressed-1.jpg" alt="Staying strong" loading="lazy"/>
+    </div>
+  </div>
+
+  <div class="way-item">
+    <div class="way-content">
+      <div class="way-badge">Way 2</div>
+      <div class="way-title">Adjusting Beyond Your Limits</div>
+      <div class="way-desc">You confuse patience with self-erasure.<br/>Over time, you forget what you actually need.</div>
+      <div class="way-insight">✨ Compromise without awareness leads to resentment.</div>
+    </div>
+    <div class="way-img-wrap">
+      <img src="assets/stuck-c2.jpg" alt="Adjusting beyond limits" loading="lazy"/>
+    </div>
+  </div>
+
+  <div class="way-item">
+    <div class="way-content">
+      <div class="way-badge">Way 3</div>
+      <div class="way-title">Doubting Yourself More Than the Situation</div>
+      <div class="way-desc">You question your feelings instead of trusting them.<br/>Self-doubt becomes your default setting.</div>
+      <div class="way-insight">✨ Your emotions are signals, not flaws.</div>
+    </div>
+    <div class="way-img-wrap">
+      <img src="assets/stuck-c1.jpg" alt="Self-doubt" loading="lazy"/>
+    </div>
+  </div>
+
+  <div class="way-item">
+    <div class="way-content">
+      <div class="way-badge">Way 4</div>
+      <div class="way-title">Waiting for Things to Change</div>
+      <div class="way-desc">You hope: "If they change... I'll feel better."<br/>But waiting keeps you stuck.</div>
+      <div class="way-insight">✨ Clarity begins when you stop waiting.</div>
+    </div>
+    <div class="way-img-wrap">
+      <img src="assets/ses-c1.jpg" alt="Waiting for change" loading="lazy"/>
+    </div>
+  </div>
+
+  <div class="way-item">
+    <div class="way-content">
+      <div class="way-badge">Way 5</div>
+      <div class="way-title">Living on Autopilot</div>
+      <div class="way-desc">You move through roles: Wife. Mother. Daughter. Professional.<br/>But where are YOU?</div>
+      <div class="way-insight">✨ Awareness interrupts autopilot.</div>
+    </div>
+    <div class="way-img-wrap">
+      <img src="assets/ses-c3.jpg" alt="Living on autopilot" loading="lazy"/>
+    </div>
+  </div>
+
+  <div class="way-item">
+    <div class="way-content">
+      <div class="way-badge">Way 6</div>
+      <div class="way-title">Feeling Guilty for Choosing Yourself</div>
+      <div class="way-desc">You equate self-care with selfishness.<br/>So you stay small to stay accepted.</div>
+      <div class="way-insight">✨ Self-connection is not selfish — it's necessary.</div>
+    </div>
+    <div class="way-img-wrap">
+      <img src="assets/ses-c4.jpg" alt="Guilt for self-care" loading="lazy"/>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:48px;">
+    <button class="enroll-btn">I Recognise Myself — Reserve My Spot →</button>
   </div>
 </section>
 
