@@ -174,7 +174,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 /* ── EVENT DETAILS ── */
 .event-section{
   background:var(--plum);
-  padding:0 24px 56px;
+  padding:56px 24px;
 }
 .event-grid{
   display:grid;
@@ -199,15 +199,18 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 .event-lbl{font-size:10px;font-weight:800;color:rgba(250,247,242,0.45);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;}
 .event-val{font-size:15px;font-weight:700;color:var(--gold);}
 
-/* ── COUNTDOWN ── */
-.countdown-section{
-  background:linear-gradient(135deg,var(--amethyst),var(--plum));
-  padding:44px 24px;text-align:center;
+/* ── COUNTDOWN (nested in event-section) ── */
+.countdown-block{
+  max-width:860px;margin:48px auto 0;
+  padding-top:40px;
+  border-top:1px solid var(--border);
+  text-align:center;
 }
 .countdown-label{
   font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
   color:rgba(250,247,242,0.6);margin-bottom:24px;
 }
+.countdown-foot{text-align:center;margin-top:18px;font-size:13px;color:rgba(250,247,242,0.5);}
 .countdown-wrap{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;}
 .cd-box{
   background:rgba(0,0,0,0.3);
@@ -751,6 +754,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 </section>
 
 <!-- EVENT DETAILS -->
+<!-- EVENT DETAILS + COUNTDOWN (single section) -->
 <section class="event-section">
   <div class="event-grid">
     <div class="event-card">
@@ -770,21 +774,20 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
       <div><div class="event-lbl">Language</div><div class="event-val">Hindi + English</div></div>
     </div>
   </div>
-</section>
 
-<!-- COUNTDOWN -->
-<section class="countdown-section">
-  <div class="countdown-label">⏳ This Masterclass Starts In</div>
-  <div class="countdown-wrap">
-    <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-unit">Days</div></div>
-    <div class="cd-sep">:</div>
-    <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-unit">Hours</div></div>
-    <div class="cd-sep">:</div>
-    <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-unit">Mins</div></div>
-    <div class="cd-sep">:</div>
-    <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-unit">Secs</div></div>
+  <div class="countdown-block">
+    <div class="countdown-label">⏳ This Masterclass Starts In</div>
+    <div class="countdown-wrap">
+      <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-unit">Days</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-unit">Hours</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-unit">Mins</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-unit">Secs</div></div>
+    </div>
+    <p class="countdown-foot">2nd August 2026 · 12:00 PM IST · Live on Zoom</p>
   </div>
-  <p style="text-align:center;margin-top:18px;font-size:13px;color:rgba(250,247,242,0.5);">2nd August 2026 · 12:00 PM IST · Live on Zoom</p>
 </section>
 
 <!-- PAIN SECTION -->
