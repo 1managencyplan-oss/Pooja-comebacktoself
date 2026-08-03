@@ -1150,7 +1150,8 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
   // ── TRACKING URLS ──
   const APPS_SCRIPT_URL   = 'https://script.google.com/macros/s/AKfycbwyXh8G7-aksTBJ68Oi3emiHnGwZcD_0OHoLAZv5mf-fWmliZB1pGI8z9KhRG4zWF3l4Q/exec';
   const PABBLY_WEBHOOK_URL = 'https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjcwNTY5MDYzMDA0MzU1MjY5NTUzNTUxMzAi_pc';
-  const STEP1_WEBHOOK_URL  = 'https://connect.pabbly.com/webhook-listener/webhook/IjU3NjIwNTZhMDYzMjA0MzA1MjY0NTUzNyI_3D_pc/IjU3NjcwNTY5MDYzMDA0M2M1MjY4NTUzYzUxMzUi_pc';
+  // DISABLED — the step-1 listener webhook is no longer called (single-step form sends everything to PABBLY_WEBHOOK_URL)
+  // const STEP1_WEBHOOK_URL  = 'https://connect.pabbly.com/webhook-listener/webhook/IjU3NjIwNTZhMDYzMjA0MzA1MjY0NTUzNyI_3D_pc/IjU3NjcwNTY5MDYzMDA0M2M1MjY4NTUzYzUxMzUi_pc';
 
   // ── MODAL ──
   document.querySelectorAll('.enroll-btn').forEach(b => b.addEventListener('click', openModal));
@@ -1238,15 +1239,12 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
         webinar_time: '12:00 PM IST',
         status: 'Form Filled',
         timestamp: leadData.time,
+        source_url: window.location.href,
+        referrer: document.referrer || 'Direct',
         page_url: window.location.href
       }, extra);
       fetch(PABBLY_WEBHOOK_URL,{ method:'POST', headers:{'Content-Type':'application/json'},
         body:JSON.stringify(payload), mode:'no-cors', keepalive:true });
-      // mirror to the original step-1 listener so the existing sheet keeps filling
-      if(STEP1_WEBHOOK_URL.indexOf('PASTE_')===-1){
-        fetch(STEP1_WEBHOOK_URL,{ method:'POST', headers:{'Content-Type':'application/json'},
-          body:JSON.stringify(payload), mode:'no-cors', keepalive:true });
-      }
     }
 
     document.getElementById('modal-form-view').style.display = 'none';
