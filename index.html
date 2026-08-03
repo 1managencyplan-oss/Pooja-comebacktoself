@@ -589,6 +589,14 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 .success-icon{font-size:52px;margin-bottom:14px;}
 .success-box h3{font-size:26px;color:var(--plum);font-weight:700;margin-bottom:12px;}
 .success-box p{font-size:15px;color:var(--grey);line-height:1.75;}
+.wa-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:22px;width:100%;background:#25D366;color:#fff;font-weight:800;
+  padding:16px 28px;border-radius:100px;text-decoration:none;font-size:16px;
+  box-shadow:0 8px 26px rgba(37,211,102,.32);transition:.2s;
+}
+.wa-btn:hover{filter:brightness(1.06);transform:translateY(-2px);}
+.wa-note{font-size:12px;color:var(--grey);margin-top:12px;}
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
@@ -1124,7 +1132,9 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
     <div id="modal-success-view" class="success-box" style="display:none;">
       <div class="success-icon">💎</div>
       <h3>You're In! Welcome to the Journey.</h3>
-      <p>Your spot for the Inner Jewel Masterclass on <strong>9th August at 12 PM IST</strong> is confirmed.<br/><br/>The Zoom link will be sent to your WhatsApp before the session. We can't wait to see you there.</p>
+      <p>Your spot for the Inner Jewel Masterclass on <strong>9th August at 12 PM IST</strong> is confirmed.<br/><br/>Taking you to the WhatsApp group now — that's where your Zoom link and reminders will be sent.</p>
+      <a id="wa-join-btn" class="wa-btn" href="https://chat.whatsapp.com/KR6bsSuMzYY1xePBEp2gSB" target="_blank" rel="noopener">💬 Join the WhatsApp Group →</a>
+      <p class="wa-note">Not redirected automatically? Tap the button above.</p>
     </div>
   </div>
 </div>
@@ -1149,6 +1159,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 
   // ── TRACKING URLS ──
   const APPS_SCRIPT_URL   = 'https://script.google.com/macros/s/AKfycbwyXh8G7-aksTBJ68Oi3emiHnGwZcD_0OHoLAZv5mf-fWmliZB1pGI8z9KhRG4zWF3l4Q/exec';
+  const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/KR6bsSuMzYY1xePBEp2gSB';
   const PABBLY_WEBHOOK_URL = 'https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjcwNTY5MDYzMDA0MzU1MjY5NTUzNTUxMzAi_pc';
   // DISABLED — the step-1 listener webhook is no longer called (single-step form sends everything to PABBLY_WEBHOOK_URL)
   // const STEP1_WEBHOOK_URL  = 'https://connect.pabbly.com/webhook-listener/webhook/IjU3NjIwNTZhMDYzMjA0MzA1MjY0NTUzNyI_3D_pc/IjU3NjcwNTY5MDYzMDA0M2M1MjY4NTUzYzUxMzUi_pc';
@@ -1249,6 +1260,10 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 
     document.getElementById('modal-form-view').style.display = 'none';
     document.getElementById('modal-success-view').style.display = 'block';
+
+    // Redirect to the WhatsApp group. Short delay so the pixel fires and the
+    // webhook requests flush before we navigate away.
+    setTimeout(function(){ window.location.href = WHATSAPP_GROUP_URL; }, 1800);
   }
 
   // ── COUNTDOWN ──
