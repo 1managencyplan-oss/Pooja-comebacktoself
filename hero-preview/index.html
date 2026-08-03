@@ -15,7 +15,7 @@
   --ivory:#FAF7F2; --lavender:#F1EBF5; --charcoal:#29252D; --grey:#716A73;
   --cta:#6D3F73; --border:rgba(197,164,109,0.25);
 }
-body{font-family:'Manrope',sans-serif;background:var(--plum);color:var(--ivory);}
+body{font-family:'Manrope',sans-serif;background:var(--plum);color:var(--ivory);padding-bottom:120px;}
 h1,h2,h3{font-family:'Cormorant Garamond',serif;}
 
 /* HEADER */
@@ -29,7 +29,7 @@ h1,h2,h3{font-family:'Cormorant Garamond',serif;}
   letter-spacing:.8px;text-transform:uppercase;}
 
 /* ── HERO (Reference A layout) ── */
-.hero{background:var(--plum);padding:56px 24px 72px;text-align:center;position:relative;overflow:hidden;}
+.hero{background:var(--plum);padding:64px 24px 72px;text-align:center;position:relative;overflow:hidden;}
 .hero::before{content:'';position:absolute;inset:0;
   background:radial-gradient(ellipse at 20% 15%,rgba(91,58,112,0.5) 0%,transparent 60%),
              radial-gradient(ellipse at 80% 85%,rgba(197,164,109,0.12) 0%,transparent 60%);}
@@ -115,6 +115,41 @@ h1,h2,h3{font-family:'Cormorant Garamond',serif;}
 .tag{position:absolute;background:#ff3b6b;color:#fff;font-size:10px;font-weight:800;
   padding:2px 7px;border-radius:6px;font-family:monospace;z-index:9;}
 
+
+/* ── FLOATING BOTTOM BAR ── */
+.float-bar{
+  position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:600;
+  width:calc(100% - 32px);max-width:760px;
+  background:rgba(24,15,32,0.96);backdrop-filter:blur(14px);
+  border:1.5px solid var(--gold);border-radius:100px;
+  padding:12px 14px 12px 30px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  box-shadow:0 14px 44px rgba(0,0,0,.55);
+}
+.fb-left{display:flex;flex-direction:column;gap:3px;}
+.fb-spots{display:flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#E8A33D;}
+.fb-dot{width:9px;height:9px;border-radius:50%;background:#E5484D;flex-shrink:0;
+  box-shadow:0 0 0 0 rgba(229,72,77,.7);animation:fbpulse 1.8s infinite;}
+@keyframes fbpulse{0%{box-shadow:0 0 0 0 rgba(229,72,77,.6);}70%{box-shadow:0 0 0 9px rgba(229,72,77,0);}100%{box-shadow:0 0 0 0 rgba(229,72,77,0);}}
+.fb-price{display:flex;align-items:baseline;gap:9px;}
+.fb-old{font-size:16px;color:rgba(250,247,242,0.4);text-decoration:line-through;font-weight:600;}
+.fb-free{font-size:23px;font-weight:800;color:var(--gold);letter-spacing:.4px;}
+.fb-btn{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--plum);
+  border:none;border-radius:100px;padding:16px 34px;cursor:pointer;
+  font-family:'Manrope',sans-serif;font-size:16px;font-weight:800;
+  letter-spacing:.6px;text-transform:uppercase;white-space:nowrap;
+  box-shadow:0 8px 26px rgba(197,164,109,.4);transition:.2s;
+}
+.fb-btn:hover{filter:brightness(1.08);transform:translateY(-2px);}
+@media(max-width:640px){
+  .float-bar{padding:10px 10px 10px 20px;gap:12px;bottom:12px;width:calc(100% - 20px);}
+  .fb-spots{font-size:10px;letter-spacing:1px;}
+  .fb-old{font-size:13px;} .fb-free{font-size:19px;}
+  .fb-btn{padding:14px 20px;font-size:13.5px;}
+}
+
 @media(max-width:900px){
   .details-card{grid-template-columns:1fr;gap:30px;padding:34px 26px;}
   .dc-divider{display:none;}
@@ -125,11 +160,6 @@ h1,h2,h3{font-family:'Cormorant Garamond',serif;}
 </head>
 <body>
 
-<div class="top-bar">🔥 Only 27 Spots Remaining — Sunday, 9th August 2026</div>
-<header class="site-header">
-  <img class="site-logo" src="/assets/logo-new.jpg" alt="Pooja Manocha"/>
-  <div class="site-brand">Pooja Manocha <span>· Inner Jewel Mentor</span></div>
-</header>
 
 <!-- HERO — Reference A -->
 <section class="hero">
@@ -193,6 +223,15 @@ h1,h2,h3{font-family:'Cormorant Garamond',serif;}
     </div>
   </div>
 </section>
+
+
+<div class="float-bar">
+  <div class="fb-left">
+    <div class="fb-spots"><span class="fb-dot"></span> Only 27 Spots Left</div>
+    <div class="fb-price"><span class="fb-old">₹1,999</span><span class="fb-free">FREE</span></div>
+  </div>
+  <button class="fb-btn">Register Now →</button>
+</div>
 
 </body>
 </html>
