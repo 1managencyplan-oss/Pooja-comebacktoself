@@ -154,6 +154,25 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 }
 .hero-desc strong{color:var(--ivory);font-weight:700;}
 
+/* hero two-column: copy + video in first fold */
+.hero-grid{
+  display:grid;grid-template-columns:1.02fr .98fr;gap:48px;
+  align-items:center;max-width:1120px;margin:0 auto;text-align:left;
+}
+.hero-grid h1{max-width:none;margin:0 0 20px;font-size:clamp(30px,3.6vw,46px);}
+.hero-grid .hero-desc{max-width:none;margin:0 0 30px;font-size:16px;}
+.hero-grid .btn-note{text-align:left;}
+.hero-video-frame{
+  aspect-ratio:16/9;border-radius:20px;overflow:hidden;
+  border:1px solid var(--border);background:#000;
+  box-shadow:0 22px 56px rgba(0,0,0,.45);
+}
+.hero-video-frame iframe{width:100%;height:100%;border:0;display:block;}
+.hero-video-cap{
+  margin-top:12px;font-size:12.5px;color:rgba(250,247,242,0.55);
+  text-align:center;letter-spacing:.3px;
+}
+
 /* method strip */
 .method-strip{
   margin:44px auto 0;max-width:720px;
@@ -524,6 +543,16 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
+  .hero{padding:44px 20px 60px;}
+  .hero-grid{grid-template-columns:1fr;gap:24px;text-align:center;}
+  .hero-grid h1{margin:0 auto 0;}
+  .hero-grid .hero-desc{margin:0 auto 24px;}
+  .hero-grid .btn-note{text-align:center;}
+  /* headline → video → rest, so both land in the first fold */
+  .hero-copy{display:contents;}
+  .hero-head{order:1;}
+  .hero-video{order:2;}
+  .hero-rest{order:3;}
   .guide-inner{grid-template-columns:1fr;gap:32px;}
   .guide-img-wrap{max-width:340px;margin:0 auto;}
   .villain-grid{grid-template-columns:1fr;}
@@ -563,11 +592,25 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 <!-- ═══ 1. HERO — THE HERO & WHAT SHE WANTS ═══ -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">Free Live Masterclass · Sunday, 9th August 2026</div>
-    <h1>Come Back to the Woman You Were<br/>Before You Started Living <em>for Everyone Else.</em></h1>
-    <p class="hero-desc">In one free live session, Pooja walks you through the <strong>Inner Jewel Method™</strong> — a simple 3-step path to reveal the patterns quietly running your life, rewire the beliefs beneath them, and radiate as your true self again.</p>
-    <button class="btn-gold enroll-btn">Reserve My Free Spot →</button>
-    <p class="btn-note on-dark">🔒 Free to attend · Limited spots · Live on Zoom</p>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-head">
+          <div class="hero-eyebrow">Free Live Masterclass · Sunday, 9th August 2026</div>
+          <h1>You Don't Need to Become Someone New. <em>Uncover the Inner Jewel</em> Hidden Beneath Old Patterns.</h1>
+        </div>
+        <div class="hero-rest">
+          <p class="hero-desc">In one free live session, Pooja walks you through the <strong>Inner Jewel Method™</strong> — a simple 3-step path to reveal the patterns quietly running your life, rewire the beliefs beneath them, and radiate as your true self again.</p>
+          <button class="btn-gold enroll-btn">Reserve My Free Spot →</button>
+          <p class="btn-note on-dark">🔒 Free to attend · Limited spots · Live on Zoom</p>
+        </div>
+      </div>
+      <div class="hero-video">
+        <div class="hero-video-frame">
+          <iframe src="https://www.youtube.com/embed/1ePJzgnoeKk?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0&amp;modestbranding=1" title="A Message From Pooja Manocha" frameborder="0" allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="hero-video-cap">▶ A message from Pooja — tap for sound</p>
+      </div>
+    </div>
 
     <div class="method-strip">
       <div class="ms-step">
@@ -589,7 +632,45 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
   </div>
 </section>
 
-<!-- ═══ 2. THE PROBLEM — THE VILLAIN ═══ -->
+<!-- ═══ 2. THE EVENT — DATE, TIME & COUNTDOWN ═══ -->
+<section class="event-section">
+  <div class="event-grid">
+    <div class="event-card">
+      <div class="event-icon">📅</div>
+      <div><div class="event-lbl">Date</div><div class="event-val">Sunday, 9th August 2026</div></div>
+    </div>
+    <div class="event-card">
+      <div class="event-icon">🕛</div>
+      <div><div class="event-lbl">Time</div><div class="event-val">12:00 PM IST</div></div>
+    </div>
+    <div class="event-card">
+      <div class="event-icon">📍</div>
+      <div><div class="event-lbl">Where</div><div class="event-val">Live on Zoom</div></div>
+    </div>
+    <div class="event-card">
+      <div class="event-icon">🌐</div>
+      <div><div class="event-lbl">Language</div><div class="event-val">Hindi + English</div></div>
+    </div>
+  </div>
+
+  <div class="countdown-block">
+    <div class="countdown-label">⏳ This Masterclass Starts In</div>
+    <div class="countdown-wrap">
+      <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-unit">Days</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-unit">Hours</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-unit">Mins</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-unit">Secs</div></div>
+    </div>
+    <div class="cta-row" style="margin-top:32px;">
+      <button class="btn-gold enroll-btn">Reserve My Free Spot →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 3. THE PROBLEM — THE VILLAIN ═══ -->
 <section class="sec problem-sec">
   <div class="wrap">
     <div class="sec-eyebrow">The Real Problem</div>
@@ -683,7 +764,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
   </div>
 </section>
 
-<!-- ═══ 3. THE GUIDE — EMPATHY + AUTHORITY ═══ -->
+<!-- ═══ 4. THE GUIDE — EMPATHY + AUTHORITY ═══ -->
 <section class="sec guide-sec">
   <div class="guide-inner">
     <div class="guide-img-wrap"><img src="/assets/pooja-photo-b.jpg" alt="Pooja Manocha, Inner Jewel Mentor"/></div>
@@ -706,7 +787,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
   </div>
 </section>
 
-<!-- ═══ 4. THE PLAN — THE INNER JEWEL METHOD™ (CENTREPIECE) ═══ -->
+<!-- ═══ 5. THE PLAN — THE INNER JEWEL METHOD™ (CENTREPIECE) ═══ -->
 <section class="sec method-sec">
   <div class="method-inner">
     <div class="method-badge">The Inner Jewel Method™</div>
@@ -782,43 +863,6 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
   </div>
 </section>
 
-<!-- ═══ 5. CALL TO ACTION — EVENT DETAILS + COUNTDOWN ═══ -->
-<section class="event-section">
-  <div class="event-grid">
-    <div class="event-card">
-      <div class="event-icon">📅</div>
-      <div><div class="event-lbl">Date</div><div class="event-val">Sunday, 9th August 2026</div></div>
-    </div>
-    <div class="event-card">
-      <div class="event-icon">🕛</div>
-      <div><div class="event-lbl">Time</div><div class="event-val">12:00 PM IST</div></div>
-    </div>
-    <div class="event-card">
-      <div class="event-icon">📍</div>
-      <div><div class="event-lbl">Where</div><div class="event-val">Live on Zoom</div></div>
-    </div>
-    <div class="event-card">
-      <div class="event-icon">🌐</div>
-      <div><div class="event-lbl">Language</div><div class="event-val">Hindi + English</div></div>
-    </div>
-  </div>
-
-  <div class="countdown-block">
-    <div class="countdown-label">⏳ This Masterclass Starts In</div>
-    <div class="countdown-wrap">
-      <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-unit">Days</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-unit">Hours</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-unit">Mins</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-unit">Secs</div></div>
-    </div>
-    <div class="cta-row" style="margin-top:32px;">
-      <button class="btn-gold enroll-btn">Reserve My Free Spot →</button>
-    </div>
-  </div>
-</section>
 
 <!-- ═══ 6. SUCCESS — WHAT LIFE LOOKS LIKE ═══ -->
 <section class="sec success-sec">
@@ -929,16 +973,6 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
   </div>
 </section>
 
-<!-- ═══ VIDEO ═══ -->
-<section class="sec video-sec">
-  <div class="wrap-narrow">
-    <div class="sec-eyebrow">A Message From Pooja</div>
-    <h2 class="sec-title">Watch Before You Register</h2>
-    <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/1ePJzgnoeKk" title="A Message From Pooja Manocha" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-  </div>
-</section>
 
 <!-- ═══ FAQ ═══ -->
 <section class="sec faq-sec">
@@ -976,8 +1010,8 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 
 <!-- ═══ FINAL CTA ═══ -->
 <section class="final-sec">
-  <h2>You Don't Need to Become Someone New.<br/>You Need to Come Back to Yourself.</h2>
-  <p>One free afternoon. Three simple steps. The woman you've been missing.</p>
+  <h2>Your Inner Jewel Was Never Lost.<br/>It Has Only Been Waiting to Be Uncovered.</h2>
+  <p>One free afternoon. Three simple steps. The woman beneath it all.</p>
   <button class="btn-gold enroll-btn" style="font-size:17px;padding:19px 48px;">Reserve My Free Spot →</button>
   <p class="btn-note on-dark">🔒 Free to attend · Sunday, 9th August · Zoom link sent to your WhatsApp</p>
 </section>
@@ -1065,6 +1099,23 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 </div>
 
 <script>
+  // ── KEEP THE AUTOPLAYING HERO VIDEO FROM SCROLL-JACKING THE PAGE ──
+  // The YouTube iframe pulls itself into view on autoplay, pushing visitors
+  // past the headline. Pin to top until the visitor actually scrolls.
+  (function(){
+    if (window.scrollY === undefined) return;
+    var released = false;
+    function release(){ released = true; }
+    ['wheel','touchstart','touchmove','keydown','pointerdown','mousedown'].forEach(function(ev){
+      window.addEventListener(ev, release, { passive:true, once:true });
+    });
+    var until = Date.now() + 4000;
+    var iv = setInterval(function(){
+      if (released || Date.now() > until){ clearInterval(iv); return; }
+      if (window.scrollY > 0) window.scrollTo(0, 0);
+    }, 80);
+  })();
+
   // ── TRACKING URLS ──
   const APPS_SCRIPT_URL   = 'https://script.google.com/macros/s/AKfycbwyXh8G7-aksTBJ68Oi3emiHnGwZcD_0OHoLAZv5mf-fWmliZB1pGI8z9KhRG4zWF3l4Q/exec';
   const PABBLY_WEBHOOK_URL = 'https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjcwNTY5MDYzMDA0MzU1MjY5NTUzNTUxMzAi_pc';
