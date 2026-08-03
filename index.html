@@ -549,9 +549,6 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 }
 .modal-box h2{font-size:26px;color:var(--plum);text-align:center;font-weight:700;}
 .modal-sub{font-size:14px;color:var(--grey);text-align:center;margin-top:8px;line-height:1.6;}
-.step-dots{display:flex;justify-content:center;gap:8px;margin:20px 0 24px;}
-.step-dot{width:28px;height:5px;border-radius:3px;background:rgba(91,58,112,0.2);transition:.3s;}
-.step-dot.active{background:var(--gold);width:36px;}
 .form-group{margin-bottom:16px;}
 .form-group label{display:block;font-size:13px;font-weight:700;color:var(--plum);margin-bottom:7px;}
 .form-group input,.form-group textarea{
@@ -587,13 +584,6 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 }
 .submit-btn:hover{background:var(--cta-hover);}
 .submit-btn:disabled{opacity:.6;cursor:default;}
-.form-row{display:flex;gap:10px;align-items:stretch;}
-.back-btn{
-  flex-shrink:0;background:rgba(91,58,112,0.08);color:var(--grey);
-  border:1.5px solid rgba(91,58,112,0.18);border-radius:100px;
-  padding:0 22px;font-size:16px;font-weight:800;cursor:pointer;font-family:inherit;
-}
-.back-btn:hover{color:var(--plum);border-color:var(--amethyst);}
 .privacy-note{text-align:center;font-size:12px;color:var(--grey);margin-top:14px;}
 .success-box{text-align:center;padding:14px 0;}
 .success-icon{font-size:52px;margin-bottom:14px;}
@@ -1080,13 +1070,9 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
     <div id="modal-form-view">
       <div class="modal-badge">🔥 Only 27 Spots Left</div>
       <h2 id="modal-title">Reserve Your Free Spot</h2>
-      <p class="modal-sub" id="modal-sub">Enter your details — we'll send the Zoom link directly to your WhatsApp</p>
-      <div class="step-dots">
-        <div class="step-dot active" id="dot-1"></div>
-        <div class="step-dot" id="dot-2"></div>
-      </div>
+      <p class="modal-sub" id="modal-sub">Fill this in once — we'll send the Zoom link straight to your WhatsApp</p>
       <form id="lead-form" onsubmit="submitLead(event)">
-        <div id="form-step-1">
+        <div id="form-single">
           <div class="form-group">
             <label>Full Name *</label>
             <input type="text" id="lead-name" placeholder="Your name"/>
@@ -1102,9 +1088,6 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
             <label>Email Address *</label>
             <input type="email" id="lead-email" placeholder="your@email.com"/>
           </div>
-          <button type="button" id="step1-next-btn" class="submit-btn" onclick="goToStep2()">Continue →</button>
-        </div>
-        <div id="form-step-2" style="display:none;">
           <div class="form-group">
             <label>Gender Identity *</label>
             <div class="opt-grid opt-grid-3" data-q="gender">
@@ -1133,10 +1116,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
               <div class="opt-card" data-val="Group / community">Group / Community</div>
             </div>
           </div>
-          <div class="form-row">
-            <button type="button" class="back-btn" onclick="goToStep1()">←</button>
-            <button type="submit" id="lead-submit-btn" class="submit-btn">Reserve My Free Spot →</button>
-          </div>
+          <button type="submit" id="lead-submit-btn" class="submit-btn">Reserve My Free Spot →</button>
         </div>
       </form>
       <p class="privacy-note">🔒 We respect your privacy. No spam, ever.</p>
@@ -1191,53 +1171,17 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
     });
   });
 
-  // ── STEP NAVIGATION ──
-  function goToStep2(){
-    const name  = document.getElementById('lead-name').value.trim();
-    const phone = document.getElementById('lead-phone').value.trim();
-    const email = document.getElementById('lead-email').value.trim();
-    if(!name || phone.length !== 10){ alert('Please enter your name and a valid 10-digit WhatsApp number.'); return; }
-    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('Please enter a valid email address.'); return; }
 
-    // Fire Meta Lead on step 1
-    if(typeof fbq !== 'undefined') fbq('track', 'Lead', { value:0, currency:'INR' });
-
-    // Log step 1 to sheet
-    if(APPS_SCRIPT_URL.indexOf('PASTE_') === -1){
-      const p1 = new URLSearchParams({ name, phone:'+91'+phone, email, plan:'Inner Jewel Masterclass', gender:'', challenge:'', urgency:'', support:'', status:'First Form Filled' });
-      fetch(APPS_SCRIPT_URL + '?' + p1.toString(), { method:'GET', mode:'no-cors', keepalive:true });
-    }
-
-    // Step 1 Pabbly webhook
-    if(STEP1_WEBHOOK_URL.indexOf('PASTE_') === -1){
-      const now = new Date();
-      const dateIST = now.toLocaleDateString('en-GB',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric'});
-      const timeIST = now.toLocaleTimeString('en-GB',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',hour12:true})+' IST';
-      const src = new URLSearchParams(window.location.search).get('utm_source') || 'Direct';
-      fetch(STEP1_WEBHOOK_URL,{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ Date:dateIST, Time:timeIST, Name:name, Email:email, Phone:'+91'+phone, Source:src }), mode:'no-cors', keepalive:true });
-    }
-
-    document.getElementById('form-step-1').style.display = 'none';
-    document.getElementById('form-step-2').style.display = 'block';
-    document.getElementById('dot-2').classList.add('active');
-    document.getElementById('modal-sub').textContent = 'Almost there — a few quick questions so Pooja can tailor this for you.';
-    document.querySelector('.modal-box').scrollTop = 0;
-  }
-
-  function goToStep1(){
-    document.getElementById('form-step-2').style.display = 'none';
-    document.getElementById('form-step-1').style.display = 'block';
-    document.getElementById('dot-2').classList.remove('active');
-    document.getElementById('modal-sub').textContent = "Enter your details — we'll send the Zoom link directly to your WhatsApp";
-  }
-
-  // ── SUBMIT ──
+  // ── SUBMIT (single step: sends everything at once) ──
   function submitLead(e){
     e.preventDefault();
     const name      = document.getElementById('lead-name').value.trim();
     const phone     = document.getElementById('lead-phone').value.trim();
     const email     = document.getElementById('lead-email').value.trim();
     const challenge = document.getElementById('lead-challenge').value.trim();
+
+    if(!name || phone.length !== 10){ alert('Please enter your name and a valid 10-digit WhatsApp number.'); return; }
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('Please enter a valid email address.'); return; }
     if(!answers.gender)  { alert('Please select your gender identity.'); return; }
     if(!challenge)       { alert('Please describe your #1 challenge.'); return; }
     if(!answers.urgency) { alert('Please select how urgently you want to solve this.'); return; }
@@ -1246,20 +1190,63 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
     const btn = document.getElementById('lead-submit-btn');
     btn.disabled = true; btn.textContent = '⏳ Confirming...';
 
-    if(typeof fbq !== 'undefined') fbq('track','CompleteRegistration',{value:0,currency:'INR'});
+    if(typeof fbq !== 'undefined'){
+      fbq('track','Lead',{value:0,currency:'INR'});
+      fbq('track','CompleteRegistration',{value:0,currency:'INR'});
+    }
 
-    const leadData = { name, phone:'+91'+phone, email, plan:'Inner Jewel Masterclass', gender:answers.gender, challenge, urgency:answers.urgency, support:answers.support, time:new Date().toISOString() };
+    const now = new Date();
+    const dateIST = now.toLocaleDateString('en-GB',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric'});
+    const timeIST = now.toLocaleTimeString('en-GB',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',hour12:true})+' IST';
+    const urlParams = new URLSearchParams(window.location.search);
+    const source = urlParams.get('utm_source') || urlParams.get('source') || 'Direct/Website';
+
+    const leadData = {
+      name, phone:'+91'+phone, email, plan:'Inner Jewel Masterclass',
+      gender:answers.gender, challenge, urgency:answers.urgency, support:answers.support,
+      time: now.toISOString()
+    };
 
     try { const l=JSON.parse(localStorage.getItem('cb2s_leads')||'[]'); l.push(leadData); localStorage.setItem('cb2s_leads',JSON.stringify(l)); } catch(err){}
 
+    // Google Sheet (Apps Script)
     if(APPS_SCRIPT_URL.indexOf('PASTE_')===-1){
-      const p2 = new URLSearchParams({ name:leadData.name, phone:leadData.phone, email:leadData.email, plan:leadData.plan, gender:leadData.gender, challenge:leadData.challenge, urgency:leadData.urgency, support:leadData.support, status:'Second Form Filled' });
-      fetch(APPS_SCRIPT_URL+'?'+p2.toString(),{method:'GET',mode:'no-cors',keepalive:true});
+      const p1 = new URLSearchParams({
+        name:leadData.name, phone:leadData.phone, email:leadData.email, plan:leadData.plan,
+        gender:leadData.gender, challenge:leadData.challenge, urgency:leadData.urgency,
+        support:leadData.support, status:'Form Filled'
+      });
+      fetch(APPS_SCRIPT_URL+'?'+p1.toString(),{method:'GET',mode:'no-cors',keepalive:true});
     }
 
+    // PABBLY — full payload, everything in one call
     if(PABBLY_WEBHOOK_URL.indexOf('PASTE_')===-1){
-      const urlP={}; new URLSearchParams(window.location.search).forEach((v,k)=>{urlP[k]=v;});
-      fetch(PABBLY_WEBHOOK_URL,{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(Object.assign({ name:leadData.name, phone:leadData.phone, email:leadData.email, plan:leadData.plan, gender:leadData.gender, challenge:leadData.challenge, urgency:leadData.urgency, support:leadData.support, date:'9 August 2026', time:'12:00 PM IST', status:'Second Form Filled', timestamp:leadData.time, page_url:window.location.href }, urlP)), mode:'no-cors', keepalive:true });
+      const extra={}; urlParams.forEach(function(v,k){ extra[k]=v; });
+      const payload = Object.assign({
+        Date: dateIST,
+        Time: timeIST,
+        Name: leadData.name,
+        Email: leadData.email,
+        Phone: leadData.phone,
+        Source: source,
+        gender: leadData.gender,
+        challenge: leadData.challenge,
+        urgency: leadData.urgency,
+        support: leadData.support,
+        plan: leadData.plan,
+        webinar_date: '9 August 2026',
+        webinar_time: '12:00 PM IST',
+        status: 'Form Filled',
+        timestamp: leadData.time,
+        page_url: window.location.href
+      }, extra);
+      fetch(PABBLY_WEBHOOK_URL,{ method:'POST', headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(payload), mode:'no-cors', keepalive:true });
+      // mirror to the original step-1 listener so the existing sheet keeps filling
+      if(STEP1_WEBHOOK_URL.indexOf('PASTE_')===-1){
+        fetch(STEP1_WEBHOOK_URL,{ method:'POST', headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(payload), mode:'no-cors', keepalive:true });
+      }
     }
 
     document.getElementById('modal-form-view').style.display = 'none';
