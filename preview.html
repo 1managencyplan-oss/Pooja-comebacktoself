@@ -27,7 +27,7 @@
   fbq('init', '2654825921550366');
   fbq('track', 'PageView');
   fbq('track', 'ViewContent', {
-    content_name: 'Inner Jewel Masterclass - 9 August 2026',
+    content_name: 'Inner Jewel Masterclass - 2 August 2026',
     content_category: 'Webinar Registration',
     content_type: 'product',
     value: 0,
@@ -174,7 +174,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 /* ── EVENT DETAILS ── */
 .event-section{
   background:var(--plum);
-  padding:56px 24px;
+  padding:0 24px 56px;
 }
 .event-grid{
   display:grid;
@@ -199,18 +199,15 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 .event-lbl{font-size:10px;font-weight:800;color:rgba(250,247,242,0.45);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;}
 .event-val{font-size:15px;font-weight:700;color:var(--gold);}
 
-/* ── COUNTDOWN (nested in event-section) ── */
-.countdown-block{
-  max-width:860px;margin:48px auto 0;
-  padding-top:40px;
-  border-top:1px solid var(--border);
-  text-align:center;
+/* ── COUNTDOWN ── */
+.countdown-section{
+  background:linear-gradient(135deg,var(--amethyst),var(--plum));
+  padding:44px 24px;text-align:center;
 }
 .countdown-label{
   font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
   color:rgba(250,247,242,0.6);margin-bottom:24px;
 }
-.countdown-foot{text-align:center;margin-top:18px;font-size:13px;color:rgba(250,247,242,0.5);}
 .countdown-wrap{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;}
 .cd-box{
   background:rgba(0,0,0,0.3);
@@ -718,7 +715,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 <body>
 
 <!-- TOP BAR -->
-<div class="top-bar">🔥 Only 27 Spots Remaining — Sunday, 9th August 2026</div>
+<div class="top-bar">🔥 Only 27 Spots Remaining — Sunday, 2nd August 2026</div>
 
 <!-- HEADER -->
 <header class="site-header">
@@ -729,7 +726,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 <!-- HERO -->
 <section class="hero">
   <div style="position:relative;z-index:1;">
-    <div class="hero-eyebrow">Free Live Masterclass · 9th August 2026</div>
+    <div class="hero-eyebrow">Free Live Masterclass · 2nd August 2026</div>
     <h1>You Don't Need to Become Someone New.<br/><em>Uncover the Inner Jewel</em> Hidden Beneath Old Patterns.</h1>
     <p class="hero-desc">Discover the hidden beliefs and patterns shaping your life. Learn a simple 3-step method to understand yourself, choose differently, and reconnect with the woman within.</p>
     <button class="hero-cta enroll-btn">Reserve My Free Spot Now →</button>
@@ -754,12 +751,11 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 </section>
 
 <!-- EVENT DETAILS -->
-<!-- EVENT DETAILS + COUNTDOWN (single section) -->
 <section class="event-section">
   <div class="event-grid">
     <div class="event-card">
       <div class="event-icon">📅</div>
-      <div><div class="event-lbl">Date</div><div class="event-val">Sunday, 9th August 2026</div></div>
+      <div><div class="event-lbl">Date</div><div class="event-val">Sunday, 2nd August 2026</div></div>
     </div>
     <div class="event-card">
       <div class="event-icon">🕛</div>
@@ -774,20 +770,21 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
       <div><div class="event-lbl">Language</div><div class="event-val">Hindi + English</div></div>
     </div>
   </div>
+</section>
 
-  <div class="countdown-block">
-    <div class="countdown-label">⏳ This Masterclass Starts In</div>
-    <div class="countdown-wrap">
-      <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-unit">Days</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-unit">Hours</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-unit">Mins</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-unit">Secs</div></div>
-    </div>
-    <p class="countdown-foot">9th August 2026 · 12:00 PM IST · Live on Zoom</p>
+<!-- COUNTDOWN -->
+<section class="countdown-section">
+  <div class="countdown-label">⏳ This Masterclass Starts In</div>
+  <div class="countdown-wrap">
+    <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-unit">Days</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-unit">Hours</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-unit">Mins</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-unit">Secs</div></div>
   </div>
+  <p style="text-align:center;margin-top:18px;font-size:13px;color:rgba(250,247,242,0.5);">2nd August 2026 · 12:00 PM IST · Live on Zoom</p>
 </section>
 
 <!-- PAIN SECTION -->
@@ -799,7 +796,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
       <p class="section-sub" style="text-align:left;margin:0;">Beneath the roles, the responsibilities, and the years of putting yourself last — the real you is still there. Waiting.</p>
     </div>
     <div class="section-side-img">
-      <img src="assets/back-to-yourself.jpg" alt="It's time to come back to yourself — journal, candle and coffee" loading="lazy"/>
+      <img src="assets/indian-stressed-1.jpg" alt="Woman feeling overwhelmed" loading="lazy"/>
     </div>
   </div>
   <div class="pain-grid">
@@ -830,7 +827,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
       <div class="way-insight">✨ You can't reconnect if you keep numbing.</div>
     </div>
     <div class="way-img-wrap">
-      <img src="assets/silent-way-1.jpg" alt="Staying strong instead of being honest" loading="lazy"/>
+      <img src="assets/indian-confident-1.jpg" alt="Staying strong" loading="lazy"/>
     </div>
   </div>
 
@@ -842,7 +839,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
       <div class="way-insight">✨ Compromise without awareness leads to resentment.</div>
     </div>
     <div class="way-img-wrap">
-      <img src="assets/silent-way-2.jpg" alt="Adjusting beyond your limits" loading="lazy"/>
+      <img src="assets/stuck-c2.jpg" alt="Adjusting beyond limits" loading="lazy"/>
     </div>
   </div>
 
@@ -854,7 +851,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
       <div class="way-insight">✨ Your emotions are signals, not flaws.</div>
     </div>
     <div class="way-img-wrap">
-      <img src="assets/silent-way-3.jpg" alt="Doubting yourself more than the situation" loading="lazy"/>
+      <img src="assets/indian-confident-3.jpg" alt="Self-doubt" loading="lazy"/>
     </div>
   </div>
 
@@ -866,7 +863,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
       <div class="way-insight">✨ Clarity begins when you stop waiting.</div>
     </div>
     <div class="way-img-wrap">
-      <img src="assets/silent-way-4.jpg" alt="Waiting for things to change" loading="lazy"/>
+      <img src="assets/ses-c1.jpg" alt="Waiting for change" loading="lazy"/>
     </div>
   </div>
 
@@ -878,7 +875,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
       <div class="way-insight">✨ Awareness interrupts autopilot.</div>
     </div>
     <div class="way-img-wrap">
-      <img src="assets/silent-way-5.jpg" alt="Living on autopilot" loading="lazy"/>
+      <img src="assets/ses-c3.jpg" alt="Living on autopilot" loading="lazy"/>
     </div>
   </div>
 
@@ -890,7 +887,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
       <div class="way-insight">✨ Self-connection is not selfish — it's necessary.</div>
     </div>
     <div class="way-img-wrap">
-      <img src="assets/silent-way-6.jpg" alt="Feeling guilty for choosing yourself" loading="lazy"/>
+      <img src="assets/indian-confident-2.jpg" alt="Guilt for self-care" loading="lazy"/>
     </div>
   </div>
 
@@ -906,15 +903,15 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
   <p class="section-sub">This isn't about fixing who you are. It's about uncovering what's been shaping you — and discovering a new way to move forward.</p>
   <div class="step-images">
     <div class="step-img-card">
-      <img src="assets/shift-compass.jpg" alt="Brass compass on stone — finding your direction" loading="lazy"/>
+      <img src="assets/session-c2.jpg" alt="Where you are now" loading="lazy"/>
       <div class="step-img-label">Where You Are Now</div>
     </div>
     <div class="step-img-card">
-      <img src="assets/shift-signpost.jpg" alt="Signpost pointing to Clarity, Growth, Freedom" loading="lazy"/>
+      <img src="assets/session-c1.jpg" alt="The Inner Jewel Method" loading="lazy"/>
       <div class="step-img-label">The Inner Jewel Method</div>
     </div>
     <div class="step-img-card">
-      <img src="assets/shift-window.jpg" alt="Open window overlooking a path winding through the mountains" loading="lazy"/>
+      <img src="assets/trans-c2.jpg" alt="Where you're going" loading="lazy"/>
       <div class="step-img-label">Where You're Going</div>
     </div>
   </div>
@@ -1092,13 +1089,13 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 <section class="final-cta-section">
   <h2>You Have Been Fine for Everyone Else for Long Enough.</h2>
   <p>Give yourself one evening. Come back to yourself.</p>
-  <button class="enroll-btn" style="font-size:17px;padding:18px 48px;">Reserve My Free Spot → 9th August</button>
+  <button class="enroll-btn" style="font-size:17px;padding:18px 48px;">Reserve My Free Spot → 2nd August</button>
   <p style="margin-top:16px;font-size:12px;color:rgba(250,247,242,0.4);">🔒 Free to attend · Zoom link sent to your WhatsApp</p>
 </section>
 
 <!-- STICKY BOTTOM -->
 <div class="sticky-bar">
-  <span class="sticky-text">🗓 <strong>9th August · 12 PM IST</strong> — Uncover Your Inner Jewel</span>
+  <span class="sticky-text">🗓 <strong>2nd August · 12 PM IST</strong> — Uncover Your Inner Jewel</span>
   <button class="sticky-btn enroll-btn" style="font-size:14px;padding:11px 28px;">Reserve My Spot →</button>
 </div>
 
@@ -1110,70 +1107,30 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
       <div class="modal-badge">🔥 Only 27 Spots Left</div>
       <h2 id="modal-title">Claim Your Free Spot</h2>
       <p class="modal-sub" id="modal-sub">Enter your details — we'll send the Zoom link directly to your WhatsApp</p>
-      <div class="step-dots">
-        <div class="step-dot active" id="dot-1"></div>
-        <div class="step-dot" id="dot-2"></div>
-      </div>
       <form id="lead-form" onsubmit="submitLead(event)">
-        <div id="form-step-1">
-          <div class="form-group">
-            <label>Full Name *</label>
-            <input type="text" id="lead-name" placeholder="Your name" required/>
-          </div>
-          <div class="form-group">
-            <label>WhatsApp Number *</label>
-            <div class="phone-wrap">
-              <div class="phone-prefix">+91</div>
-              <input type="tel" id="lead-phone" placeholder="10-digit number" maxlength="10" required/>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Email Address *</label>
-            <input type="email" id="lead-email" placeholder="your@email.com" required/>
-          </div>
-          <button type="button" id="step1-next-btn" class="submit-btn" onclick="goToStep2()">Continue →</button>
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="lead-name" placeholder="Your name" required/>
         </div>
-        <div id="form-step-2" style="display:none;">
-          <div class="form-group">
-            <label>Gender Identity *</label>
-            <div class="opt-grid opt-grid-3" data-q="gender">
-              <div class="opt-card" data-val="Female">Female</div>
-              <div class="opt-card" data-val="Male">Male</div>
-              <div class="opt-card" data-val="Other">Other</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Your #1 Challenge Right Now *</label>
-            <textarea id="lead-challenge" placeholder="Please describe what you're going through..." required></textarea>
-          </div>
-          <div class="form-group">
-            <label>How Urgently Do You Want to Solve This? *</label>
-            <div class="opt-grid" data-q="urgency">
-              <div class="opt-card" data-val="Immediately">🔴 Immediately</div>
-              <div class="opt-card" data-val="Next 30 days">🟡 Next 30 days</div>
-              <div class="opt-card" data-val="2-3 months">🟡 2–3 months</div>
-              <div class="opt-card" data-val="Exploring">⚪ Just exploring</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Support You're Interested In *</label>
-            <div class="opt-grid" data-q="support">
-              <div class="opt-card" data-val="1:1 coaching">1:1 Coaching</div>
-              <div class="opt-card" data-val="Group / community">Group / Community</div>
-            </div>
-          </div>
-          <div class="form-row">
-            <button type="button" class="back-btn" onclick="goToStep1()">←</button>
-            <button type="submit" id="lead-submit-btn" class="submit-btn">Claim My Free Spot →</button>
+        <div class="form-group">
+          <label>WhatsApp Number *</label>
+          <div class="phone-wrap">
+            <div class="phone-prefix">+91</div>
+            <input type="tel" id="lead-phone" placeholder="10-digit number" maxlength="10" required/>
           </div>
         </div>
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" id="lead-email" placeholder="your@email.com" required/>
+        </div>
+        <button type="submit" id="lead-submit-btn" class="submit-btn">Reserve My Free Spot →</button>
       </form>
       <p class="privacy-note">🔒 We respect your privacy. No spam, ever.</p>
     </div>
     <div id="modal-success-view" class="success-box" style="display:none;">
       <div class="success-icon">💎</div>
       <h3>You're In! Welcome to the Journey.</h3>
-      <p>Your spot for the Inner Jewel Masterclass on <strong>9th August at 12 PM IST</strong> is confirmed.<br/><br/>The Zoom link will be sent to your WhatsApp before the session. We can't wait to see you there.</p>
+      <p>Your spot for the Inner Jewel Masterclass on <strong>2nd August at 12 PM IST</strong> is confirmed.<br/><br/>The Zoom link will be sent to your WhatsApp before the session. We can't wait to see you there.</p>
     </div>
   </div>
 </div>
@@ -1190,88 +1147,33 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
   function closeModal(){ document.getElementById('lead-modal').classList.remove('open'); document.body.style.overflow=''; }
   document.getElementById('lead-modal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
 
-  // ── SELECTABLE CARDS ──
-  const answers = { gender:'', urgency:'', support:'' };
-  document.querySelectorAll('.opt-grid').forEach(grid => {
-    const q = grid.getAttribute('data-q');
-    grid.querySelectorAll('.opt-card').forEach(card => {
-      card.addEventListener('click', () => {
-        grid.querySelectorAll('.opt-card').forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        answers[q] = card.getAttribute('data-val');
-      });
-    });
-  });
-
-  // ── STEP NAVIGATION ──
-  function goToStep2(){
+  // ── SUBMIT ──
+  function submitLead(e){
+    e.preventDefault();
     const name  = document.getElementById('lead-name').value.trim();
     const phone = document.getElementById('lead-phone').value.trim();
     const email = document.getElementById('lead-email').value.trim();
     if(!name || phone.length !== 10){ alert('Please enter your name and a valid 10-digit WhatsApp number.'); return; }
     if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('Please enter a valid email address.'); return; }
 
-    // Fire Meta Lead on step 1
-    if(typeof fbq !== 'undefined') fbq('track', 'Lead', { value:0, currency:'INR' });
-
-    // Log step 1 to sheet
-    if(APPS_SCRIPT_URL.indexOf('PASTE_') === -1){
-      const p1 = new URLSearchParams({ name, phone:'+91'+phone, email, plan:'Inner Jewel Masterclass', gender:'', challenge:'', urgency:'', support:'', status:'First Form Filled' });
-      fetch(APPS_SCRIPT_URL + '?' + p1.toString(), { method:'GET', mode:'no-cors', keepalive:true });
-    }
-
-    // Step 1 Pabbly webhook
-    if(STEP1_WEBHOOK_URL.indexOf('PASTE_') === -1){
-      const now = new Date();
-      const dateIST = now.toLocaleDateString('en-GB',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric'});
-      const timeIST = now.toLocaleTimeString('en-GB',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',hour12:true})+' IST';
-      const src = new URLSearchParams(window.location.search).get('utm_source') || 'Direct';
-      fetch(STEP1_WEBHOOK_URL,{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ Date:dateIST, Time:timeIST, Name:name, Email:email, Phone:'+91'+phone, Source:src }), mode:'no-cors', keepalive:true });
-    }
-
-    document.getElementById('form-step-1').style.display = 'none';
-    document.getElementById('form-step-2').style.display = 'block';
-    document.getElementById('dot-2').classList.add('active');
-    document.getElementById('modal-sub').textContent = 'Almost there — a few quick questions so Pooja can tailor this for you.';
-    document.querySelector('.modal-box').scrollTop = 0;
-  }
-
-  function goToStep1(){
-    document.getElementById('form-step-2').style.display = 'none';
-    document.getElementById('form-step-1').style.display = 'block';
-    document.getElementById('dot-2').classList.remove('active');
-    document.getElementById('modal-sub').textContent = "Enter your details — we'll send the Zoom link directly to your WhatsApp";
-  }
-
-  // ── SUBMIT ──
-  function submitLead(e){
-    e.preventDefault();
-    const name      = document.getElementById('lead-name').value.trim();
-    const phone     = document.getElementById('lead-phone').value.trim();
-    const email     = document.getElementById('lead-email').value.trim();
-    const challenge = document.getElementById('lead-challenge').value.trim();
-    if(!answers.gender)  { alert('Please select your gender identity.'); return; }
-    if(!challenge)       { alert('Please describe your #1 challenge.'); return; }
-    if(!answers.urgency) { alert('Please select how urgently you want to solve this.'); return; }
-    if(!answers.support) { alert('Please select the type of support you\'re interested in.'); return; }
-
     const btn = document.getElementById('lead-submit-btn');
     btn.disabled = true; btn.textContent = '⏳ Confirming...';
 
-    if(typeof fbq !== 'undefined') fbq('track','CompleteRegistration',{value:0,currency:'INR'});
+    if(typeof fbq !== 'undefined') fbq('track', 'Lead', { value:0, currency:'INR' });
 
-    const leadData = { name, phone:'+91'+phone, email, plan:'Inner Jewel Masterclass', gender:answers.gender, challenge, urgency:answers.urgency, support:answers.support, time:new Date().toISOString() };
-
-    try { const l=JSON.parse(localStorage.getItem('cb2s_leads')||'[]'); l.push(leadData); localStorage.setItem('cb2s_leads',JSON.stringify(l)); } catch(err){}
+    const now = new Date();
+    const dateIST = now.toLocaleDateString('en-GB',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric'});
+    const timeIST = now.toLocaleTimeString('en-GB',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',hour12:true})+' IST';
+    const src = new URLSearchParams(window.location.search).get('utm_source') || 'Direct';
 
     if(APPS_SCRIPT_URL.indexOf('PASTE_')===-1){
-      const p2 = new URLSearchParams({ name:leadData.name, phone:leadData.phone, email:leadData.email, plan:leadData.plan, gender:leadData.gender, challenge:leadData.challenge, urgency:leadData.urgency, support:leadData.support, status:'Second Form Filled' });
-      fetch(APPS_SCRIPT_URL+'?'+p2.toString(),{method:'GET',mode:'no-cors',keepalive:true});
+      const p = new URLSearchParams({ name, phone:'+91'+phone, email, plan:'Inner Jewel Masterclass', status:'Registered' });
+      fetch(APPS_SCRIPT_URL+'?'+p.toString(),{method:'GET',mode:'no-cors',keepalive:true});
     }
 
     if(PABBLY_WEBHOOK_URL.indexOf('PASTE_')===-1){
       const urlP={}; new URLSearchParams(window.location.search).forEach((v,k)=>{urlP[k]=v;});
-      fetch(PABBLY_WEBHOOK_URL,{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(Object.assign({ name:leadData.name, phone:leadData.phone, email:leadData.email, plan:leadData.plan, gender:leadData.gender, challenge:leadData.challenge, urgency:leadData.urgency, support:leadData.support, date:'9 August 2026', time:'12:00 PM IST', status:'Second Form Filled', timestamp:leadData.time, page_url:window.location.href }, urlP)), mode:'no-cors', keepalive:true });
+      fetch(PABBLY_WEBHOOK_URL,{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(Object.assign({ Date:dateIST, Time:timeIST, Name:name, Phone:'+91'+phone, Email:email, Plan:'Inner Jewel Masterclass', Source:src, status:'Registered', page_url:window.location.href }, urlP)), mode:'no-cors', keepalive:true });
     }
 
     document.getElementById('modal-form-view').style.display = 'none';
@@ -1280,7 +1182,7 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
 
   // ── COUNTDOWN ──
   function updateCountdown(){
-    const target = new Date('2026-08-09T12:00:00+05:30').getTime();
+    const target = new Date('2026-08-02T12:00:00+05:30').getTime();
     const now = Date.now();
     const diff = target - now;
     if(diff <= 0){
